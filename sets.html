@@ -1,0 +1,740 @@
+<html>
+	<head>
+		<style>
+			.col_left {
+				width: 80%;
+				height: 100%;
+				background-color: cornsilk;
+				float: left;
+			}
+			.col_right {
+				width: 20%;
+				height: 100%;
+				background-color: #2a2a2a;
+				float: left;
+			}
+			.textbox {
+				margin: 2.5%;
+				width: 95%;
+				height: 92%;
+			}
+			.textbox_header {
+				font-size: 36px;
+				text-align: center;
+				color: #a94442;
+				text-transform: uppercase;
+			}
+			.textbox {
+				font-size: 12px;
+				font-family: Consolas, monaco, monospace;
+				background-color: #2a2a2a;
+				color: #a94442;
+				border: 1px solid #a94442;
+			}
+			.textbox:focus {
+				border: 1px solid #a94442;
+				outline: none;
+			}
+			.user_selector {
+				background-color: #2a2a2a;
+				width: 100%;
+				height: 23%;
+			}
+			.nagarash, .espik, .information_desk, .rastafa, .saberwave, .kaylum, .mercwad {
+				float: left;
+				width: 14.28%;
+				height: 100%;
+				border: unset;
+			}
+			.nagarash img, .espik img, .information_desk img, .rastafa img, .saberwave img, .kaylum img, .mercwad img {
+				width: 90%;
+				margin: 5%;
+			}
+			.userSelected {
+				border: 5px solid #a94442;
+			}
+			.hidden {
+				display: none;
+			}
+			.mon_container {
+				height: 77%;
+				width: 100%;
+				background-color: #2a2a2a;
+			}
+			.mon {
+				height: 50%;
+				width: 20%;
+				background-color: #2a2a2a;
+				text-align: center;
+				font-size: 12px;
+				font-family: Consolas, monaco, monospace;
+				color: #a94442;
+				position: relative;
+				float: left;
+			}
+			.mon img {
+				height: 30%;
+			}
+			.mon_inner {
+				position: absolute;
+				left: 3%;
+				top: 3%;
+				bottom: 3%;
+				right: 3%;
+				height: 94%;
+				background-color: #2a2a2a;
+			}
+			.set_text {
+				position: absolute;
+				bottom: 3%;
+				width: 94%;
+				left: 3%;
+				text-align: center;
+			}
+			.monSelected {
+				background-color: #a94442;
+			}
+			.copied_popup {
+				position: absolute;
+				right: 1.5%;
+				top: 1;
+				background-color: #2a2a2a;
+				color: #a94442;
+				border: 2px solid #a94442;
+				z-index: 10;
+				border-radius: 3px;
+				font-size: 36px;
+				padding: 1px;
+				display: none;
+			}
+		</style>
+		<title>Season 2 Sets</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script type="text/javascript">
+			//jquery here
+			function clearSets(){
+				$('.textbox').val('');
+			};
+			
+			function resetSelectedMons(){
+				$('.mon').each(function(){
+					$(this).removeClass('monSelected');
+					$(this).addClass('hidden');
+				});
+			};
+			
+			function unSelectUsers(){
+				$('.user_selector > div').each(function(){
+					$(this).removeClass('userSelected');
+				});
+			};
+			
+			function updateText(){
+				var text = '';
+				clearSets();
+				$('.monSelected').each(function(){
+					text += $(this).find('.set_text').html();
+					text += '<br><br>';
+				});
+				$('.textbox').val(text.replace(/<br ?\/?>/g, "\n"));
+			};
+			
+			function copyPopup(){
+				$('.copied_popup').css('display', 'block');
+				$('.copied_popup').fadeOut(2000);
+			};
+			
+			function monToggleSelect(e){
+				if ($(e).hasClass('monSelected')){
+					$(e).removeClass('monSelected');
+				} else {
+					$(e).addClass('monSelected');
+				}
+				updateText();
+			};
+			
+			function selectNagarash(){
+				unSelectUsers();
+				$('.nagarash').addClass('userSelected');
+				resetSelectedMons();
+				clearSets();
+				$('.solosis').removeClass('hidden');
+				$('.trapinch').removeClass('hidden');
+				$('.inkay').removeClass('hidden');
+				$('.gible').removeClass('hidden');
+				$('.ralts').removeClass('hidden');
+				$('.geodude-alola').removeClass('hidden');
+				$('.shelmet').removeClass('hidden');
+				$('.rowlet').removeClass('hidden');
+				$('.skrelp').removeClass('hidden');
+				$('.jangmo-o').removeClass('hidden');
+			};
+			
+			function selectEspik(){
+				unSelectUsers();
+				$('.espik').addClass('userSelected');
+				resetSelectedMons();
+				clearSets();
+				$('.minccino').removeClass('hidden');
+				$('.munna').removeClass('hidden');
+				$('.houndour').removeClass('hidden');
+				$('.froakie').removeClass('hidden');
+				$('.oddish').removeClass('hidden');
+				$('.goomy').removeClass('hidden');
+				$('.shieldon').removeClass('hidden');
+				$('.sandygast').removeClass('hidden');
+				$('.cleffa').removeClass('hidden');
+				$('.starly').removeClass('hidden');
+			};
+			
+			function selectInformationDesk(){
+				unSelectUsers();
+				$('.information_desk').addClass('userSelected');
+				resetSelectedMons();
+				clearSets();
+				$('.growlithe').removeClass('hidden');
+				$('.zorua').removeClass('hidden');
+				$('.purrloin').removeClass('hidden');
+				$('.baltoy').removeClass('hidden');
+				$('.riolu').removeClass('hidden');
+				$('.dratini').removeClass('hidden');
+				$('.chimchar').removeClass('hidden');
+				$('.ekans').removeClass('hidden');
+				$('.treecko').removeClass('hidden');
+				$('.mankey').removeClass('hidden');
+			};
+		
+			function selectRastafa(){
+				unSelectUsers();
+				$('.rastafa').addClass('userSelected');
+				resetSelectedMons();
+				clearSets();
+				$('.phantump').removeClass('hidden');
+				$('.pineco').removeClass('hidden');
+				$('.morelull').removeClass('hidden');
+				$('.wailmer').removeClass('hidden');
+				$('.nosepass').removeClass('hidden');
+				$('.mantyke').removeClass('hidden');
+				$('.mimejr').removeClass('hidden');
+				$('.litleo').removeClass('hidden');
+				$('.bergmite').removeClass('hidden');
+				$('.karrablast').removeClass('hidden');
+			};
+			
+			function selectSaberwave(){
+				unSelectUsers();
+				$('.saberwave').addClass('userSelected');
+				resetSelectedMons();
+				clearSets();
+				$('.tyrunt').removeClass('hidden');
+				$('.duskull').removeClass('hidden');
+				$('.espurr').removeClass('hidden');
+				$('.aron').removeClass('hidden');
+				$('.yamask').removeClass('hidden');
+				$('.shuppet').removeClass('hidden');
+				$('.tyrogue').removeClass('hidden');
+				$('.klink').removeClass('hidden');
+				$('.hoppip').removeClass('hidden');
+				$('.cosmog').removeClass('hidden');
+			};
+			
+			function selectKaylum(){
+				unSelectUsers();
+				$('.kaylum').addClass('userSelected');
+				resetSelectedMons();
+				clearSets();
+				$('.cacnea').removeClass('hidden');
+				$('.cubone').removeClass('hidden');
+				$('.litwick').removeClass('hidden');
+				$('.deino').removeClass('hidden');
+				$('.spheal').removeClass('hidden');
+				$('.togepi').removeClass('hidden');
+				$('.happiny').removeClass('hidden');
+				$('.noibat').removeClass('hidden');
+				$('.skorupi').removeClass('hidden');
+				$('.bronzor').removeClass('hidden');
+			};
+			
+			function selectMercwad(){
+				unSelectUsers();
+				$('.mercwad').addClass('userSelected');
+				resetSelectedMons();
+				clearSets();
+				$('.machop').removeClass('hidden');
+				$('.golett').removeClass('hidden');
+				$('.drowzee').removeClass('hidden');
+				$('.bonsly').removeClass('hidden');
+				$('.elgyem').removeClass('hidden');
+				$('.skiddo').removeClass('hidden');
+				$('.mareep').removeClass('hidden');
+				$('.piplup').removeClass('hidden');
+				$('.flabebe').removeClass('hidden');
+				$('.lickitung').removeClass('hidden');
+			};
+		</script>
+	</head>
+	
+	<body>
+		<div class="col_left">
+			<div class="user_selector">
+				<div class="nagarash" onclick="selectNagarash()">
+					<img src="nagarash.png">
+				</div>
+				<div class="espik" onclick="selectEspik()">
+					<img src="espik.png">
+				</div>
+				<div class="information_desk" onclick="selectInformationDesk()">
+					<img src="informationdesk.png">
+				</div>
+				<div class="rastafa" onclick="selectRastafa()">
+					<img src="rastafa.png">
+				</div>
+				<div class="saberwave" onclick="selectSaberwave()">
+					<img src="saberwave.png">
+				</div>
+				<div class="kaylum" onclick="selectKaylum()">
+					<img src="kaylum.png">
+				</div>
+				<div class="mercwad" onclick="selectMercwad()">
+					<img src="mercwad.png">
+				</div>
+			</div>
+			<div class="mon_container">
+				<div class="mon hidden solosis" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/solosis.gif"><br>
+						<div class="set_text">Solosis @ Eviolite<br>Ability: Overcoat<br>Level: 5<br>EVs: 236 HP / 76 SpA / 196 SpD<br>Modest Nature<br>IVs: 0 Atk / 0 Spe<br>- Trick Room<br>- Psychic<br>- Shadow Ball<br>- Protect</div>
+					</div>
+				</div>
+				<div class="mon hidden phantump" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/phantump.gif"><br>
+						<div class="set_text">Phantump @ Grassium Z<br>Level: 5<br>Shiny: Yes<br>Ability: Natural Cure<br>EVs: 12 HP / 196 Atk / 52 Def / 36 SpD / 212 Spe<br>Jolly Nature<br>- Forest's Curse<br>- Shadow Claw<br>- Horn Leech<br>- Rock Slide</div>
+					</div>
+				</div>
+				<div class="mon hidden machop" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/machop.gif"><br>
+						<div class="set_text">Machop @ Choice Scarf<br>Level: 5<br>Ability: No Guard<br>EVs: 36 HP / 196 Atk / 36 Def / 236 Spe<br>Jolly Nature<br>- Knock Off<br>- Dynamic Punch<br>- Poison Jab<br>- Rock Slide</div>
+					</div>
+				</div>
+				<div class="mon hidden growlithe" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/growlithe.gif"><br>
+						<div class="set_text">Growlithe @ Eviolite<br>Ability: Flash Fire<br>Level: 5<br>EVs: 156 HP / 196 Atk / 36 SpD / 116 Spe<br>Adamant Nature<br>- Sunny Day<br>- Morning Sun<br>- Flare Blitz<br>- Crunch</div>
+					</div>
+				</div>
+				<div class="mon hidden cacnea" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/cacnea.gif"><br>
+						<div class="set_text">Cacnea @ Flame Orb<br>Ability: Water Absorb<br>Level: 5<br>EVs: 236 Atk / 76 Def / 196 SpD<br>Careful Nature<br>- Spikes<br>- Seed Bomb<br>- Leech Seed<br>- Switcheroo</div>
+					</div>
+				</div>
+				<div class="mon hidden minccino" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/minccino.gif"><br>
+						<div class="set_text">Minccino @ Life Orb<br>Ability: Skill Link<br>Level: 5<br>Shiny: Yes<br>EVs: 196 Atk / 36 Def / 36 SpD / 236 Spe<br>Jolly Nature<br>- Tail Slap<br>- Knock Off<br>- U-turn<br>- Wake-Up Slap</div>
+					</div>
+				</div>
+				<div class="mon hidden tyrunt" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/tyrunt.gif"><br>
+						<div class="set_text">Tyrunt @ Berry Juice<br>Level: 5<br>Ability: Sturdy<br>EVs: 204 Atk / 76 SpD / 212 Spe<br>IVs: 23 HP<br>Jolly Nature<br>- Dragon Dance<br>- Stone Edge<br>- Outrage<br>- Earthquake</div>
+					</div>
+				</div>
+				<div class="mon hidden trapinch" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/trapinch.gif"><br>
+						<div class="set_text">Trapinch @ Berry Juice<br>Ability: Arena Trap<br>Level: 5<br>EVs: 76 HP / 196 Atk / 236 SpD<br>Brave Nature<br>IVs: 0 Spe<br>- Earthquake<br>- Rock Slide<br>- Superpower<br>- Quick Attack</div>
+					</div>
+				</div>
+				<div class="mon hidden pineco" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/pineco.gif"><br>
+						<div class="set_text">Pineco @ Berry Juice<br>Level: 5<br>Shiny: Yes<br>Ability: Sturdy<br>EVs: 236 Atk / 36 Def / 236 Spe<br>Jolly Nature<br>- Stealth Rock<br>- Spikes<br>- Toxic Spikes<br>- Explosion</div>
+					</div>
+				</div>
+				<div class="mon hidden golett" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/golett.gif"><br>
+						<div class="set_text">Golett @ Eviolite<br>Level: 5<br>Ability: Iron Fist<br>EVs: 44 HP / 244 Atk / 196 Def<br>Adamant Nature<br>- Drain Punch<br>- Earthquake<br>- Protect<br>- Ice Punch</div>
+					</div>
+				</div>
+				<div class="mon hidden zorua" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/zorua.gif"><br>
+						<div class="set_text">Zorua (F) @ Flame Orb<br>Ability: Illusion<br>Level: 5<br>EVs: 36 Def / 196 SpA / 36 SpD / 236 Spe<br>Timid Nature<br>IVs: 0 Atk<br>- Night Daze<br>- Extrasensory<br>- Nasty Plot<br>- Trick</div>
+					</div>
+				</div>
+				<div class="mon hidden cubone" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/cubone.gif"><br>
+						<div class="set_text">Cubone @ Thick Club<br>Ability: Battle Armor<br>Level: 5<br>EVs: 40 HP / 196 Atk / 76 Def / 196 SpD<br>Adamant Nature<br>- Brick Break<br>- Earthquake<br>- Knock Off<br>- Bonemerang</div>
+					</div>
+				</div>
+				<div class="mon hidden munna" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/munna.gif"><br>
+						<div class="set_text">Munna @ Berry Juice<br>Ability: Telepathy<br>Level: 5<br>Shiny: Yes<br>EVs: 236 Def / 60 SpA / 156 SpD<br>Sassy Nature<br>IVs: 0 Atk / 0 Spe<br>- Protect<br>- Helping Hand<br>- Trick Room<br>- Psyshock</div>
+					</div>
+				</div>
+				<div class="mon hidden duskull" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/duskull.gif"><br>
+						<div class="set_text">Duskull @ Eviolite<br>Level: 5<br>Ability: Levitate<br>EVs: 196 HP / 196 Def / 116 SpD<br>Relaxed Nature<br>- Pain Split<br>- Will-O-Wisp<br>- Substitute<br>- Shadow Sneak</div>
+					</div>
+				</div>
+				<div class="mon hidden inkay" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/inkay.gif"><br>
+						<div class="set_text">Inkay @ Berry Juice<br>Ability: Contrary<br>Level: 5<br>EVs: 24 HP / 244 Atk / 12 Def / 228 SpD<br>Brave Nature<br>IVs: 0 Spe<br>- Knock Off<br>- Superpower<br>- Psycho Cut<br>- Trick Room</div>
+					</div>
+				</div>
+				<div class="mon hidden morelull" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/morelull.gif"><br>
+						<div class="set_text">Morelull @ Eviolite<br>Level: 5<br>Shiny: Yes<br>Ability: Effect Spore<br>EVs: 36 HP / 236 Def / 76 SpA / 156 SpD<br>Bold Nature<br>- Protect<br>- Dazzling Gleam<br>- Giga Drain<br>- Strength Sap</div>
+					</div>
+				</div>
+				<div class="mon hidden drowzee" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/drowzee.gif"><br>
+						<div class="set_text">Drowzee @ Eviolite<br>Level: 5<br>Ability: Inner Focus<br>EVs: 236 Def / 252 SpA / 20 Spe<br>Modest Nature<br>- Protect<br>- Dazzling Gleam<br>- Psychic<br>- Future Sight</div>
+					</div>
+				</div>
+				<div class="mon hidden purrloin" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/purrloin.gif"><br>
+						<div class="set_text">Purrloin @ Lagging Tail<br>Ability: Prankster<br>Level: 5<br>EVs: 28 HP / 220 Def / 220 SpD<br>Sassy Nature<br>IVs: 0 SpA<br>- Trick<br>- Thunder Wave<br>- Toxic<br>- Sucker Punch</div>
+					</div>
+				</div>
+				<div class="mon hidden litwick" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/litwick.gif"><br>
+						<div class="set_text">Litwick @ Focus Band<br>Ability: Flame Body<br>Level: 5<br>EVs: 236 SpA / 236 SpD / 36 Spe<br>Modest Nature<br>IVs: 0 Atk<br>- Flamethrower<br>- Dark Pulse<br>- Hex<br>- Psychic</div>
+					</div>
+				</div>
+				<div class="mon hidden houndour" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/houndour.gif"><br>
+						<div class="set_text">Houndour @ Life Orb<br>Ability: Flash Fire<br>Level: 5<br>Shiny: Yes<br>EVs: 36 Def / 196 SpA / 36 SpD / 236 Spe<br>Modest Nature<br>IVs: 0 Atk / 30 Def<br>- Fire Blast<br>- Snarl<br>- Heat Wave<br>- Hidden Power [Ice]</div>
+					</div>
+				</div>
+				<div class="mon hidden espurr" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/espurr.gif"><br>
+						<div class="set_text">Espurr @ Electrium Z<br>Level: 5<br>Ability: Infiltrator<br>EVs: 20 HP / 4 Def / 176 SpA / 36 SpD / 216 Spe<br>IVs: 0 Atk / 30 SpA / 30 Spe<br>Timid Nature<br>- Thunderbolt<br>- Psychic<br>- Substitute<br>- Hidden Power Fire</div>
+					</div>
+				</div>
+				<div class="mon hidden gible" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/gible.gif"><br>
+						<div class="set_text">Gible @ Eviolite<br>Ability: Rough Skin<br>Level: 5<br>Shiny: Yes<br>EVs: 196 HP / 76 Def / 236 SpA<br>Modest Nature<br>IVs: 0 Atk / 0 SpD<br>- Stealth Rock<br>- Draco Meteor<br>- Earth Power<br>- Fire Blast</div>
+					</div>
+				</div>
+				<div class="mon hidden wailmer" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/wailmer.gif"><br>
+						<div class="set_text">Wailmer @ Choice Scarf<br>Level: 5<br>Shiny: Yes<br>Ability: Water Veil<br>EVs: 36 HP / 196 SpA / 196 Spe / 76 Def<br>Timid Nature<br>- Water Spout<br>- Surf<br>- Ice Beam<br>- Protect</div>
+					</div>
+				</div>
+				<div class="mon hidden bonsly" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/bonsly.gif"><br>
+						<div class="set_text">Bonsly @ Berry Juice<br>Level: 5<br>Ability: Sturdy<br>EVs: 216 SpD / 216 Def / 36 Atk / 36 HP<br>Brave Nature<br>- Stealth Rock<br>- Rock Slide<br>- Explosion<br>- Protect</div>
+					</div>
+				</div>
+				<div class="mon hidden baltoy" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/baltoy.gif"><br>
+						<div class="set_text">Baltoy @ Eviolite<br>Ability: Levitate<br>Level: 5<br>EVs: 36 HP / 236 Def / 36 SpA / 196 SpD<br>Bold Nature<br>IVs: 0 Atk<br>- Rapid Spin<br>- Stealth Rock<br>- Ally Switch<br>- Psychic</div>
+					</div>
+				</div>
+				<div class="mon hidden deino" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/deino.gif"><br>
+						<div class="set_text">Deino<br>Ability: Hustle<br>Level: 5<br>EVs: 236 Atk / 76 Def / 196 SpD<br>Adamant Nature<br>- Thief<br>- Dragon Tail<br>- Fire Fang<br>- Ice Fang</div>
+					</div>
+				</div>
+				<div class="mon hidden froakie" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/froakie.gif"><br>
+						<div class="set_text">Froakie @ Life Orb<br>Ability: Protean<br>Level: 5<br>Shiny: Yes<br>EVs: 36 Def / 180 SpA / 84 SpD / 188 Spe<br>Timid Nature<br>IVs: 0 Atk<br>- Icy Wind<br>- Surf<br>- Taunt<br>- Ice Beam</div>
+					</div>
+				</div>
+				<div class="mon hidden aron" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/aron.gif"><br>
+						<div class="set_text">Aron @ Eviolite<br>Level: 5<br>Ability: Rock Head<br>EVs: 196 Atk / 116 SpD / 196 Spe<br>Jolly Nature<br>- Rock Polish<br>- Head Smash<br>- Heavy Slam<br>- Earthquake</div>
+					</div>
+				</div>
+				<div class="mon hidden ralts" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/ralts.gif"><br>
+						<div class="set_text">Ralts @ Eviolite<br>Ability: Telepathy<br>Level: 5<br>EVs: 236 HP / 24 Def / 236 SpA<br>Quiet Nature<br>IVs: 0 Atk / 0 Spe<br>- Psychic<br>- Dazzling Gleam<br>- Trick Room<br>- Thunderbolt</div>
+					</div>
+				</div>
+				<div class="mon hidden nosepass" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/nosepass.gif"><br>
+						<div class="set_text">Nosepass @ Berry Juice<br>Level: 5<br>Shiny: Yes<br>Ability: Sturdy<br>EVs: 76 Atk / 236 Def / 196 SpD<br>Relaxed Nature<br>- Stealth Rock<br>- Rock Slide<br>- Thunder Wave<br>- Volt Switch</div>
+					</div>
+				</div>
+				<div class="mon hidden elgyem" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/elgyem.gif"><br>
+						<div class="set_text">Elgyem @ Eviolite<br>Level: 5<br>Ability: Telepathy<br>EVs: 236 Def / 236 SpD / 36 Spe<br>Bold Nature<br>- Trick Room<br>- Psychic<br>- Reflect<br>- Recover</div>
+					</div>
+				</div>
+				<div class="mon hidden riolu" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/riolu.gif"><br>
+						<div class="set_text">Riolu @ Eviolite<br>Ability: Prankster<br>Level: 5<br>EVs: 116 HP / 196 Def / 196 SpD<br>Adamant Nature<br>IVs: 0 Atk<br>- Sunny Day<br>- Helping Hand<br>- Roar<br>- Magnet Rise</div>
+					</div>
+				</div>
+				<div class="mon hidden spheal" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/spheal.gif"><br>
+						<div class="set_text">Spheal @ Leftovers<br>Ability: Ice Body<br>Level: 5<br>EVs: 36 Def / 240 SpA / 232 SpD<br>Modest Nature<br>- Ice Beam<br>- Surf<br>- Hail<br>- Hidden Power Dark</div>
+					</div>
+				</div>
+				<div class="mon hidden oddish" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/oddish.gif"><br>
+						<div class="set_text">Oddish @ Eviolite<br>Ability: Chlorophyll<br>Level: 5<br>Shiny: Yes<br>EVs: 76 HP / 156 Def / 76 SpA / 156 SpD<br>Bold Nature<br>IVs: 0 Atk / 0 Spe<br>- Strength Sap<br>- Giga Drain<br>- Sludge Bomb<br>- Moonblast</div>
+					</div>
+				</div>
+				<div class="mon hidden yamask" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/yamask.gif"><br>
+						<div class="set_text">Yamask @ Eviolite<br>Level: 5<br>Ability: Mummy<br>EVs: 52 HP / 36 Atk / 156 Def / 236 SpD<br>Relaxed Nature<br>- Substitute<br>- Pain Split<br>- Knock Off<br>- Toxic Spikes</div>
+					</div>
+				</div>
+				<div class="mon hidden geodude-alola" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/geodude-alola.gif"><br>
+						<div class="set_text">Geodude-Alola @ Berry Juice<br>Ability: Galvanize<br>Level: 5<br>Shiny: Yes<br>EVs: 196 Atk / 116 Def / 196 SpD<br>Adamant Nature<br>IVs: 0 Spe<br>- Earthquake<br>- Bulldoze<br>- Rock Blast<br>- Wide Guard</div>
+					</div>
+				</div>
+				<div class="mon hidden mantyke" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/mantyke.gif"><br>
+						<div class="set_text">Mantyke @ Eviolite<br>Level: 5<br>Shiny: Yes<br>Ability: Water Absorb<br>EVs: 36 Def / 200 SpA / 36 SpD / 196 Spe<br>Modest Nature<br>- Protect<br>- Surf<br>- Air Slash<br>- Tailwind</div>
+					</div>
+				</div>
+				<div class="mon hidden skiddo" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/skiddo.gif"><br>
+						<div class="set_text">Skiddo @ Eviolite<br>Level: 5<br>Ability: Grass Pelt<br>EVs: 212 Def / 236 Atk / 20 Spe<br>Adamant Nature<br>- Grassy Terrain<br>- Synthesis<br>- Razor Leaf<br>- Rock Slide</div>
+					</div>
+				</div>
+				<div class="mon hidden dratini" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/dratini.gif"><br>
+						<div class="set_text">Dratini @ Berry Juice<br>Ability: Shed Skin<br>Level: 5<br>EVs: 164 Atk / 196 SpA / 116 Spe<br>Rash Nature<br>IVs: 17 HP<br>- Outrage<br>- Extreme Speed<br>- Dragon Dance<br>- Thunderbolt</div>
+					</div>
+				</div>
+				<div class="mon hidden togepi" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/togepi.gif"><br>
+						<div class="set_text">Togepi @ Choice Specs<br>Ability: Super Luck<br>Level: 5<br>EVs: 76 Def / 196 SpA / 236 SpD<br>Modest Nature<br>- Metronome<br>- Light Screen<br>- Reflect<br>- Dazzling Gleam</div>
+					</div>
+				</div>
+				<div class="mon hidden goomy" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/goomy.gif"><br>
+						<div class="set_text">Goomy @ Dragonium Z<br>Ability: Sap Sipper<br>Level: 5<br>Shiny: Yes<br>EVs: 76 Def / 156 SpA / 236 SpD<br>Modest Nature<br>IVs: 0 Atk / 0 Spe<br>- Draco Meteor<br>- Protect<br>- Toxic<br>- Sludge Wave</div>
+					</div>
+				</div>
+				<div class="mon hidden shuppet" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/shuppet.gif"><br>
+						<div class="set_text">Shuppet @ Focus Sash<br>Level: 5<br>Ability: Frisk<br>EVs: 4 HP / 236 Atk / 156 Def / 92 SpD<br>Brave Nature<br>- Pain Split<br>- Knock Off<br>- Shadow Sneak<br>- Destiny Bond</div>
+					</div>
+				</div>
+				<div class="mon hidden shelmet" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/shelmet.gif"><br>
+						<div class="set_text">Shelmet @ Eviolite<br>Ability: Shell Armor<br>Level: 5<br>Shiny: Yes<br>EVs: 236 Def / 36 SpA / 236 SpD<br>Bold Nature<br>IVs: 0 Atk / 0 Spe<br>- Recover<br>- Toxic Spikes<br>- Infestation<br>- Final Gambit</div>
+					</div>
+				</div>
+				<div class="mon hidden mimejr" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/mime_jr.gif"><br>
+						<div class="set_text">Mime Jr. @ Eviolite<br>Level: 5<br>Shiny: Yes<br>Ability: Technician<br>EVs: 196 SpA / 196 Spe / 36 HP / 36 SpD<br>Timid Nature<br>- Protect<br>- Fake Out<br>- Icy Wind<br>- Taunt</div>
+					</div>
+				</div>
+				<div class="mon hidden mareep" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/mareep.gif"><br>
+						<div class="set_text">Mareep @ Eviolite<br>Level: 5<br>Ability: Static<br>EVs: 236 SpA / 236 Spe / 36 Def<br>Modest Nature<br>- Heal Bell<br>- Discharge<br>- Protect<br>- Reflect</div>
+					</div>
+				</div>
+				<div class="mon hidden chimchar" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/chimchar.gif"><br>
+						<div class="set_text">Chimchar @ Focus Sash<br>Ability: Blaze<br>Level: 5<br>EVs: 4 HP / 56 Atk / 4 Def / 216 SpA / 4 SpD / 188 Spe<br>Hasty Nature<br>- Fake Out<br>- Overheat<br>- Hidden Power [Grass]<br>- Stealth Rock</div>
+					</div>
+				</div>
+				<div class="mon hidden happiny" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/happiny.gif"><br>
+						<div class="set_text">Happiny (F) @ Choice Scarf<br>Ability: Serene Grace<br>Level: 5<br>EVs: 236 SpA / 76 SpD / 196 Spe<br>Timid Nature<br>- Metronome<br>- Shadow Ball<br>- Thunder Wave<br>- Hyper Voice</div>
+					</div>
+				</div>
+				<div class="mon hidden shieldon" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/shieldon.gif"><br>
+						<div class="set_text">Shieldon @ Berry Juice<br>Ability: Sturdy<br>Level: 5<br>Shiny: Yes<br>EVs: 116 HP / 180 Atk / 212 SpD<br>Adamant Nature<br>IVs: 0 Spe<br>- Stone Edge<br>- Stealth Rock<br>- Earthquake<br>- Wide Guard</div>
+					</div>
+				</div>
+				<div class="mon hidden tyrogue" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/tyrogue.gif"><br>
+						<div class="set_text">Tyrogue @ Eviolite<br>Level: 5<br>Shiny: Yes<br>Ability: Guts<br>Jolly Nature<br>EVs: 236 Atk / 236 Spe<br>- Protect<br>- Rapid Spin<br>- High Jump Kick<br>- Earthquake</div>
+					</div>
+				</div>
+				<div class="mon hidden rowlet" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/rowlet.gif"><br>
+						<div class="set_text">Rowlet @ Eviolite<br>Ability: Overgrow<br>Level: 5<br>Shiny: Yes<br>EVs: 76 Atk / 236 Def / 196 SpD<br>Impish Nature<br>- Sucker Punch<br>- Brave Bird<br>- Roost<br>- Leaf Blade</div>
+					</div>
+				</div>
+				<div class="mon hidden litleo" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/litleo.gif"><br>
+						<div class="set_text">Litleo @ Eviolite<br>Level: 5<br>Shiny: Yes<br>Ability: Rivalry<br>EVs: 176 SpA / 184 HP / 100 Spe / 4 SpD<br>IVs: 30 HP / 30 SpA<br>Modest Nature<br>- Hyper Voice<br>- Flamethrower<br>- Protect<br>- Hidden Power Grass</div>
+					</div>
+				</div>
+				<div class="mon hidden piplup" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/piplup.gif"><br>
+						<div class="set_text">Piplup @ Eviolite<br>Level: 5<br>Ability: Torrent<br>EVs: 188 SpA / 196 Spe / 92 HP / 12 Def<br>Modest Nature<br>- Protect<br>- Surf<br>- Defog<br>- Aqua Ring</div>
+					</div>
+				</div>
+				<div class="mon hidden ekans" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/ekans.gif"><br>
+						<div class="set_text">Ekans @ Berry Juice<br>Ability: Intimidate<br>Level: 5<br>EVs: 156 HP / 84 Def / 244 SpD<br>Careful Nature<br>- Coil<br>- Gunk Shot<br>- Earthquake<br>- Sucker Punch</div>
+					</div>
+				</div>
+				<div class="mon hidden noibat" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/noibat.gif"><br>
+						<div class="set_text">Noibat @ Haban Berry<br>Ability: Infiltrator<br>Level: 5<br>EVs: 36 HP / 236 SpA / 196 SpD / 40 Spe<br>Modest Nature<br>- Super Fang<br>- Air Slash<br>- Shadow Ball<br>- Dragon Pulse</div>
+					</div>
+				</div>
+				<div class="mon hidden sandygast" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/sandygast.gif"><br>
+						<div class="set_text">Sandygast @ Berry Juice<br>Ability: Water Compaction<br>Level: 5<br>Shiny: Yes<br>EVs: 76 HP / 196 SpA / 236 SpD<br>Modest Nature<br>IVs: 0 Atk / 0 Spe<br>- Destiny Bond<br>- Earth Power<br>- Shadow Ball<br>- Protect</div>
+					</div>
+				</div>
+				<div class="mon hidden klink" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/klink.gif"><br>
+						<div class="set_text">Klink @ Eviolite<br>Level: 5<br>Ability: Clear Body<br>EVs: 236 Atk / 36 Def / 116 SpD / 116 Spe<br>Adamant Nature<br>- Shift Gear<br>- Gear Grind<br>- Wild Charge<br>- Return</div>
+					</div>
+				</div>
+				<div class="mon hidden skrelp" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/skrelp.gif"><br>
+						<div class="set_text">Skrelp @ Eviolite<br>Ability: Adaptability<br>Level: 5<br>EVs: 248 HP / 252 SpA / 8 SpD<br>Modest Nature<br>IVs: 0 Atk<br>- Sludge Wave<br>- Hydro Pump<br>- Shadow Ball<br>- Toxic Spikes</div>
+					</div>
+				</div>
+				<div class="mon hidden bergmite" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/bergmite.gif"><br>
+						<div class="set_text">Bergmite @ Eviolite<br>Level: 5<br>Shiny: Yes<br>Ability: Sturdy<br>EVs: 44 Atk / 156 Def / 236 SpD / 52 Spe<br>Impish Nature<br>- Protect<br>- Recover<br>- Avalanche<br>- Toxic</div>
+					</div>
+				</div>
+				<div class="mon hidden flabebe" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/flabebe.gif"><br>
+						<div class="set_text"><br>Flabebe @ Eviolite<br>Level: 5<br>Ability: Flower Veil<br>EVs: 192 SpA / 180 Spe / 84 HP / 44 Def<br>IVs: 30 SpD / 30 SpA<br>Modest Nature<br>- Dazzling Gleam<br>- Hidden Power Ground<br>- Calm Mind<br>- Protect</div>
+					</div>
+				</div>
+				<div class="mon hidden treecko" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/treecko.gif"><br>
+						<div class="set_text">Treecko @ Berry Juice<br>Ability: Unburden<br>Level: 5<br>EVs: 116 HP / 156 Atk / 156 Def / 36 Spe<br>Adamant Nature<br>- Swords Dance<br>- Bullet Seed<br>- Drain Punch<br>- Acrobatics</div>
+					</div>
+				</div>
+				<div class="mon hidden skorupi" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/skorupi.gif"><br>
+						<div class="set_text">Skorupi @ Expert Belt<br>Ability: Sniper<br>Level: 5<br>EVs: 36 HP / 200 Atk / 36 Def / 236 SpD<br>Adamant Nature<br>- Knock Off<br>- Night Slash<br>- X-Scissor<br>- Cross Poison</div>
+					</div>
+				</div>
+				<div class="mon hidden cleffa" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/cleffa.gif"><br>
+						<div class="set_text">Cleffa @ Focus Sash<br>Ability: Friend Guard<br>Level: 5<br>Shiny: Yes<br>EVs: 36 HP / 212 Def / 236 SpD<br>Calm Nature<br>IVs: 0 Atk / 0 Spe<br>- Protect<br>- Aromatherapy<br>- Heal Pulse<br>- Thunder Wave</div>
+					</div>
+				</div>
+				<div class="mon hidden hoppip" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/hoppip.gif"><br>
+						<div class="set_text">Hoppip @ Eviolite<br>Level: 5<br>Ability: Infiltrator<br>EVs: 156 HP / 196 Def / 156 SpD<br>Impish Nature<br>- Strength Sap<br>- Sleep Powder<br>- Bullet Seed<br>- U-turn</div>
+					</div>
+				</div>
+				<div class="mon hidden jangmo-o" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/jangmo-o.gif"><br>
+						<div class="set_text">Jangmo-o @ Berry Juice<br>Ability: Bulletproof<br>Level: 5<br>Shiny: Yes<br>EVs: 36 HP / 236 Atk / 236 SpD<br>Adamant Nature<br>IVs: 0 Spe<br>- Dragon Tail<br>- Brick Break<br>- X-Scissor<br>- Substitute</div>
+					</div>
+				</div>
+				<div class="mon hidden karrablast" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/karrablast.gif"><br>
+						<div class="set_text">Karrablast @ Berry Juice<br>Level: 5<br>Shiny: Yes<br>Ability: No Guard<br>EVs: 236 Atk / 76 Def / 196 Spe<br>Jolly Nature<br>- Megahorn<br>- Knock Off<br>- Protect<br>- Swords Dance</div>
+					</div>
+				</div>
+				<div class="mon hidden lickitung" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/lickitung.gif"><br>
+						<div class="set_text">Lickitung @ Eviolite<br>Level: 5<br>Ability: Oblivious<br>EVs: 196 HP / 76 Def / 236 SpD<br>Impish Nature<br>- Wish<br>- Protect<br>- Body Slam<br>- Knock Off</div>
+					</div>
+				</div>
+				<div class="mon hidden mankey" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/mankey.gif"><br>
+						<div class="set_text">Mankey @ Choice Scarf<br>Ability: Defiant<br>Level: 5<br>EVs: 36 HP / 196 Atk / 76 Def / 196 Spe<br>Jolly Nature<br>- Close Combat<br>- Gunk Shot<br>- U-turn<br>- Earthquake</div>
+					</div>
+				</div>
+				<div class="mon hidden bronzor" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/bronzor.gif"><br>
+						<div class="set_text">Bronzor @ Leftovers<br>Ability: Heatproof<br>Level: 5<br>EVs: 24 Def / 244 SpA / 228 SpD / 12 Spe<br>Modest Nature<br>IVs: 0 Atk<br>- Flash Cannon<br>- Extrasensory<br>- Shadow Ball<br>- Signal Beam</div>
+					</div>
+				</div>
+				<div class="mon hidden starly" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/shiny-sprite/starly.gif"><br>
+						<div class="set_text">Starly @ Choice Scarf<br>Ability: Reckless<br>Level: 5<br>Shiny: Yes<br>EVs: 36 HP / 236 Atk / 36 SpA / 196 Spe<br>Naive Nature<br>- Brave Bird<br>- Double-Edge<br>- U-turn<br>- Heat Wave</div>
+					</div>
+				</div>
+				<div class="mon hidden cosmog" onclick="monToggleSelect(this)">
+					<div class="mon_inner">
+						<img src="https://projectpokemon.org/images/normal-sprite/cosmog.gif"><br>
+						<div class="set_text">Cosmog @ Berry Juice<br>Level: 5<br>Ability: Unaware<br>EVs: 252 HP / 188 Def / 28 SpD<br>Relaxed Nature<br>- Splash</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col_right">
+			<div class="textbox_container">
+				<div class="textbox_header">
+					Copy sets:
+				</div>
+				<textarea class="textbox" spellcheck="false" onclick='this.select();document.execCommand("copy");copyPopup();' readonly="readonly"></textarea>
+			</div>
+		</div>
+		<div class="copied_popup">
+			<span>Copied to clipboard!</span>
+		</div>
+	</body>
+</html>
